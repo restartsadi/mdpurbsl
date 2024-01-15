@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'embed_video',    
+    'embed_video',   
 ]
 
 MIDDLEWARE = [
@@ -81,10 +83,10 @@ WSGI_APPLICATION = 'newssite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'newssite1',
-        'USER': 'postgres',
-        'PASSWORD' : '1234',
-        'HOST' : 'localhost'
+        'NAME': 'db_zakk',
+        'USER': 'db_zakk_user',
+        'PASSWORD' : 'hsPO6jIR5msn5IVZZ9fVK6TxDWSygzqq',
+        'HOST' : 'dpg-cmiesoda73kc739le4pg-a'
     }
 }
 
