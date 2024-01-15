@@ -1,0 +1,394 @@
+{% load static %}
+{% static "img" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+    <!--Looping Start for Site Title  -->
+    
+    {% for title in titles %}
+    
+    <title>{{title.defaultname}}</title>
+    
+    {% endfor %}
+    <!--Looping End for Site Title  -->
+    
+    <!--Looping Start for Browser Favicon  -->
+    {% for browser_icon in browser_icons %}
+    <link rel="icon" href="{{browser_icon.img.url}}">
+    {% endfor %}
+    <!--Looping End for Browser Favicon  -->
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header-area">
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Breaking News Area -->
+                    
+                        
+                    <div class="col-12 col-md-6">
+                        <div class="breaking-news-area">
+                            <!--Looping Starts for Breaking News Title-->
+                           {% for brknst in brknsts %}
+                            <h5 class="breaking-news-title">{{brknst.defaultbreaking}}</h5>
+                            {% endfor %}
+                            <!--Looping End for Breaking News Title-->
+
+                            <div id="breakingNewsTicker" class="ticker">
+                                <ul>
+                                    <!--Looping Starts for Breaking News Tricker-->
+                                    {% for news_tricker in news_trickers %}
+                                    <li><a href="{{news_tricker.url}}">{{news_tricker.name}}</a></li>
+                                    {% endfor %}
+                                    <!--Looping End for Breaking News Tricker-->
+                                </ul>
+                               
+                            </div>
+                          
+                        </div>
+                    </div>
+                   
+        <!-- Stock News Area -->
+        <div class="col-12 col-md-6">
+            
+            <div class="stock-news-area">
+                
+                <div id="stockNewsTicker" class="ticker">
+
+                    <ul>
+                        {% for stock_report in stock_reports %}
+                        <li>
+                            <div class="single-stock-report">
+                                <div class="stock-values">
+                                    <span>{{stock_report.currencyname}}</span>
+                                    <span>{{stock_report.currencyvalue}}</span>
+                                </div>
+                                <div class="stock-index minus-index">
+                                    <h4>{{stock_report.currencyminusindex}}</h4>
+                                </div>
+                            </div>
+                            
+                            <div class="single-stock-report">
+                                <div class="stock-values">
+                                    <span>{{stock_report.currencyname}}</span>
+                                    <span>{{stock_report.currencyvalue}}</span>
+                                </div>
+                                <div class="stock-index minus-index">
+                                    <h4>{{stock_report.currencyminusindex}}</h4>
+                                </div>
+                            </div>
+                        
+                            <div class="single-stock-report">
+                                <div class="stock-values">
+                                    <span>{{stock_report.currencyname}}</span>
+                                    <span>{{stock_report.currencyvalue}}</span>
+                                </div>
+                                <div class="stock-index minus-index">
+                                    <h4>{{stock_report.currencyminusindex}}</h4>
+                                </div>
+                            </div>
+                            
+                        </li>
+                        {% endfor %}
+                    </ul>
+                   
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+</div>
+
+        <!-- Middle Header Area -->
+        <div class="middle-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Logo Area -->
+                    
+                    <div class="col-12 col-md-4">
+                        
+                        <div class="logo-area">
+                            
+                            <a href="{{site_logo.url}}">
+                                {% for site_logo in site_logos %}
+                                <img src="{{site_logo.img.url}}" alt="logo">
+                                {% endfor %}
+                            </a>
+                                
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Header Advert Area -->
+                    <div class="col-12 col-md-8">
+                        <div class="header-advert-area">
+                            <a href="{{header_add.url}}">
+                                {% for header_add in header_adds %}
+                                <img src="{{header_add.img.url}}" alt="header-add">
+                                {% endfor %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Header Area -->
+        <div class="bottom-header">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="main-menu">
+                            <nav class="navbar navbar-expand-lg">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#gazetteMenu" aria-controls="gazetteMenu" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i> Menu</button>
+                                <div class="collapse navbar-collapse" id="gazetteMenu">
+                                    
+                                    <ul class="navbar-nav mr-auto">
+                                        
+                                        <li class="nav-item active">
+
+                                            <marquee onmouseout="start()"  onmouseover="stop()">
+                                                <a class="nav-link" href="{% url 'index' %}"> <b>মোহাম্মদপুর থানা ছাত্রলীগের অফিসিয়াল ওয়েবসাইটে আপনাকে স্বাগতম</b><span class="sr-only">(current)</span></a>
+                                            </marquee>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>আরও+</b></a>
+                                            
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                
+                                                <a class="dropdown-item" href="{% url 'index' %}"><b>মূল পেইজ</b></a>
+                                                <a class="dropdown-item" href="{% url 'category' %}"><b>ওয়ার্ড সমূহ</b></a>
+                                                <a class="dropdown-item" href="{% url 'singlepost' %}"><b>বিজ্ঞপ্তি</b></a>
+                                                <a class="dropdown-item" href="{% url 'about' %}"><b>কমিটি</b></a>
+                                                <a class="dropdown-item" href="{% url 'contact' %}"><b>যোগাযোগ</b></a>
+                                                <a class="dropdown-item" href="{% url 'culturalnews' %}"><b>কর্মসূচী</b></a>
+                                                <a class="dropdown-item" href="{% url 'sportnews' %}"><b>উন্নয়ন কার্যক্রম</b></a>
+                                                
+                                                
+                                            </div>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'category' %}"><b>ওয়ার্ড</b></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'about' %}"><b>কমিটি</b></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'contact' %}"><b>যোগাযোগ</b></a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'singlepost' %}"><b>বিজ্ঞপ্তি</b></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'culturalnews' %}"><b>কর্মসূচী</b></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'sportnews' %}"><b>উন্নয়ন</b></a>
+                                        </li>
+                                        
+                                        
+                                    </ul>
+
+                                    <!-- Search Form -->
+                                    <div class="header-search-form mr-auto">
+                                        <form method='get' action="{% url 'search' %}">
+                                            
+                                            <input type="text" placeholder="আপনি যা খুজতে চান লিখুন" id="search" name="query">
+                                            <input class="d-none" type="submit" value="submit">
+                                        </form>
+                                    </div>
+                                    <!-- Search btn -->
+                                    <div id="searchbtn" id="search" value="submit">
+                                        <i class="fa fa-search" aria-hidden="true" ></i>
+                                    </div>
+
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+    
+                    {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ message }}</strong>.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                            {% endfor %}
+                    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+    <!-- Footer Area Start -->{% for ftrbg in ftrbgs %}
+<footer class="footer-area bg-img background-overlay" style="background-image: url({{ftrbg.img.url}});">
+    <!-- Top Footer Area -->
+    
+    <div class="top-footer-area section_padding_100_70">
+        <div class="container">
+            
+            <div class="row">
+                {% for footerheadlinea in footerheadlineas %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlinea.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetlista in footerwidgetlistas %}
+                            <li><a href="{{footerwidgetlista.url}}">{{footerwidgetlista.list}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+
+                {% for footerheadlineb in footerheadlinebs %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlineb.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetlistb in footerwidgetlistbs %}
+                            <li><a href="{{footerwidgetlistb.url}}">{{footerwidgetlistb.list}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+                {% for footerheadlinec in footerheadlinecs %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlinec.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetlistc in footerwidgetlistcs %}
+                            <li><a href="{{footerwidgetlistc.url}}">{{footerwidgetlistc.list}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+                {% for footerheadlined in footerheadlineds %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlined.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetlistd in footerwidgetlistds %}
+                            <li><a href="{{footerwidgetlistd.url}}">{{footerwidgetlistd.list}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+                {% for footerheadlinee in footerheadlinees %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlinee.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetliste in footerwidgetlistes %}
+                            <li><a href="{{footerwidgetliste.url}}">{{footerwidgetliste.list}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+                {% for footerheadlinef in footerheadlinefs %}                
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-footer-widget">
+                        <div class="footer-widget-title">
+                            <h4 class="font-pt">{{footerheadlinef.headline}}</h4>
+                        </div>
+                        <ul class="footer-widget-menu">
+                            {% for footerwidgetlistf in footerwidgetlistfs %}
+                            <li><a href="{{footerwidgetlistf.url}}">{{footerwidgetlistf.list}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Footer Widget -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Footer Area -->
+    <div class="bottom-footer-area">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-12">
+                    <div class="copywrite-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<a href="#">Developed By Sadi Proprietor at Creative Thinker!</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endfor %}
+<!-- Footer Area End -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+<script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- Plugins js -->
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{% static 'js/active.js' %}"></script>
+
+</body>
+
+</html>

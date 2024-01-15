@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "img" as baseUrl %}
+{% block content %}
+    <!-- Breadcumb Area Start -->
+    {% for aboutusbreadcumbarea in aboutusbreadcumbareas %}
+    <div class="breadcumb-area section_padding_50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb-content d-flex align-items-center justify-content-between">
+                        <h3 class="font-pt mb-0">{{aboutusbreadcumbarea.heading}}</h3>
+                        <p class="editorial-post-date text-dark mb-0">{{aboutusbreadcumbarea.date}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcumb Area End -->
+    {% endfor %}
+
+    <section class="gazette-about-us-area section_padding_100_70">
+        {% for gazetteaboutusarea in gazetteaboutusareas %}
+        <div class="about-us-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="font-pt mb-30">{{gazetteaboutusarea.heading }}</h3>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p>{{gazetteaboutusarea.paragraph1}}</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p>{{gazetteaboutusarea.paragraph2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="team-area mt-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {% for teamarea in teamareas %}
+                        <a href="{% url 'aboutteamdetail' teamarea.id %}"><h3 class="font-pt mb-50">{{teamarea.heading}}</h3></a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% for singleteamarea in singleteamareas %}
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="single-team-area">
+                            <a href="{% url 'aboutteamdetail' singleteamarea.id %}"><img src="{{singleteamarea.img.url}}" alt=""></a>
+                            <div class="team-member-data">
+                                <h4 class="font-pt">{{singleteamarea.name}}</h4>
+                                <div class="team-member-designation-social-info d-flex align-items-cente justify-content-between">
+                                    <h5 class="font-pt mb-0">{{singleteamarea.role}}</h5>
+                                    
+                                    <div class="social-info">
+                                        {% for sociallink in sociallinks %}
+                                        <a href="{{sociallink.href}}"><i class="{{sociallink.name}}"></i></a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% for gazettectaarea in gazettectaareas %}
+    <section class="gazette-cta-area bg-img background-overlay section_padding_100" style="background-image: url({{gazettectaarea.image.url}});">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-12 col-md-8">
+                    
+                    <div class="cta-content text-center">
+                        <h2 class="font-pt">{{gazettectaarea.heading}}</h2>
+                        <p><b>{{gazettectaarea.paragraph}}</b></p>
+                        <a href="{% url 'gazettectaareadetail' gazettectaarea.id %}" class="btn gazette-btn font-pt"><b>আলাদা ভাবে দেখুন</b> <i class="fa fa-angle-right"></i></a>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section><br>
+    {% endfor %}
+    <!-- Footer Area Start -->
+    {% endblock %}

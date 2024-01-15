@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "img" as baseUrl %}
+{% block content %}
+
+<section class="main-content-wrapper section_padding_5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for catagorygazettewelcomepostareac in catagorygazettewelcomepostareacs %}
+                <a href="{% url 'categorywelcomepostcdetail' catagorygazettewelcomepostareac.id %}"><h2 class="font-pt">{{catagorygazettewelcomepostareac.gazetteposttag}}</h2></a>                    
+                {% endfor %}
+            </div>
+                
+            
+            <div class="col-12 col-lg-9">
+                <!-- Gazette Video Welcome Post -->
+                
+                <div class="gazette-welcome-post">
+                    <!-- Video Thumbnail -->
+                    <div class="blog-post-thumbnail my-5" >
+                        {% for catagorygazettewelcomepostareac in catagorygazettewelcomepostareacs %}
+                        <a href="{% url 'categorywelcomepostcdetail' catagorygazettewelcomepostareac.id %}"><img src="{{catagorygazettewelcomepostareac.gazettepostimg.url}}" alt=""></a>
+                         {% endfor %}
+                    </div>
+                    <!-- video's Tag -->
+                    
+                    <div class="gazette-post-tag">
+                        <a href="{% url 'categorywelcomepostcdetail' catagorygazettewelcomepostareac.id %}">{{catagorygazettewelcomepostareac.gazetteposttag}}</a>
+                    </div>
+                    
+                    <!--video's title-->
+                    <h6>{{catagorygazettewelcomepostareac.gazettepostheadline}}</h6>
+                    <p class="editorial-post-date mb-15">{{catagorygazettewelcomepostareac.gazettepostdate}}</p>
+                    <p>{{catagorygazettewelcomepostareac.gazettepostparagraph}}</p>
+                    
+                    <!-- Reading More -->
+                    
+                </div>
+               
+            </div>
+            
+
+            <div class="col-12 col-lg-3 col-md-6">
+                <div class="sidebar-area">
+                    <!-- Breaking News Widget -->
+                    {% for breakingnewswidget in breakingnewswidgets %}
+                    <div class="breaking-news-widget">
+                        <div class="widget-title">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"><h5>{{breakingnewswidget.widget_title}}</h5></a>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                        <div class="single-breaking-news-widget">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}">
+                            <img src="{{breakingnewswidget.widgetimg.url}}" alt=""></a>
+                            <div class="breakingnews-title">
+                                <p>{{breakingnewswidget.widgetbreakingnewstitle}}</p>
+                            </div>
+                            <div class="breaking-news-heading gradient-background-overlay">
+                                <h5 class="font-pt">{{breakingnewswidget.widgetheadline}}</h5>
+                            </div>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Main Content Area Start -->
+
+
+
+
+{% endblock %}

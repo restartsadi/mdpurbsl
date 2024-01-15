@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "img" as baseUrl %}
+
+{% block content %}
+    <!-- Breadcumb Area Start -->
+    <div class="breadcumb-area section_padding_50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% for contactusbreadcumbarea in contactusbreadcumbareas %}
+                    <div class="breacumb-content d-flex align-items-center justify-content-between">
+                        <h3 class="font-pt mb-0">{{contactusbreadcumbarea.heading}}</h3>
+                        <p class="editorial-post-date text-dark mb-0">{{contactusbreadcumbarea.date}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcumb Area End -->
+
+    <section class="gazette-contact-area section_padding_100">
+        <div class="container">
+            <div class="row">
+                {% for gazettecontactarea in gazettecontactareas %}
+                <div class="col-12 col-md-8">
+                    <div class="gazette-heading">
+                        <h4 class="font-bold">{{gazettecontactarea.heading}}</h4>
+                    </div>
+                    <!-- Contact Form -->
+                    <form action="account/comment" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="txt" id="contact-name" placeholder="{{gazettecontactarea.formtext}}">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="contact-email" placeholder="{{gazettecontactarea.formemail}}">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="mssg" id="message" cols="30" rows="10" placeholder="{{gazettecontactarea.formmsg}}"></textarea>
+                        </div>
+                        <button type="submit" class="btn contact-btn">{{gazettecontactarea.formbtn}} <i class="fa fa-angle-right ml-2"></i></button>
+                    </form>
+                </div>
+                {% endfor %}
+                {% for contactaddressinfo in contactaddressinfos %}
+                <div class="col-12 col-md-4">
+                    <div class="gazette-heading">
+                        <h4 class="font-bold">{{contactaddressinfo.heading}}</h4>
+                    </div>
+                    <div class="contact-address-info mb-50">
+                        <p>{{contactaddressinfo.infopara1}} <br> {{contactaddressinfo.infopara2}} <br> {{contactaddressinfo.infopara3}}</p>
+                    </div>
+                    <div class="gazette-heading">
+                        <h4 class="font-bold">{{contactaddressinfo.phoneheading}}</h4>
+                    </div>
+                    <div class="contact-address-info">
+                        <p>{{contactaddressinfo.contactinfo1}} <br>{{contactaddressinfo.contactinfo2}} <br>{{contactaddressinfo.contactinfo3 }} <br>{{contactaddressinfo.contactinfo4}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    
+
+{% endblock %}

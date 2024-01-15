@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "img" as baseUrl %}
+
+{% block content %}
+<section class="single-post-area">
+    {% for culturalnewsarea in culturalnewsareas %}
+        <!-- Single Post Title -->
+        
+        <div class="single-post-title bg-img background-overlay" style="background-image: url({{culturalnewsarea.img.url}});">
+            
+            <div class="container h-100">
+                <div class="row h-100 align-items-end">
+                    <div class="col-12">
+                        <div class="single-post-title-content">
+                            <!-- Post Tag -->
+                            <div class="gazette-post-tag">
+
+                                <a href="{% url 'culturalnewsdetailtop' culturalnewsarea.id %}">{{culturalnewsarea.tag}}</a>
+                            </div>
+
+                            <a href="{% url 'culturalnewsdetailtop' culturalnewsarea.id %}"><h2 class="font-pt">{{culturalnewsarea.heading}}</h2></a>
+
+                            
+                            <a href="{% url 'culturalnewsdetailtop' culturalnewsarea.id %}"><p>{{culturalnewsarea.date}}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        {% endfor %}
+        <div class="single-post-contents">
+            <div class="container">
+                {% for culturalnews in culturalnewss %}
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <div class="single-post-text">
+                            <p>{{culturalnews.p1}}</p>
+                            <p>{{culturalnews.p2}}</p>
+                            <p>{{culturalnews.p3}}</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="single-post-thumb">
+
+                            <a href="{% url 'culturalnewsdetailmid' culturalnews.id %}">
+                                <img src="{{culturalnews.imgthumb.url}}" alt="">
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="single-post-text">
+                            <p>{{culturalnews.ptext1}}</p>
+                            <p>{{culturalnews.ptext2}}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <div class="single-post-blockquote">
+                            <blockquote>
+                                <h6 class="font-pt mb-0">{{culturalnews.blockqts}}</h6>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="single-post-text">
+                            <p>{{culturalnews.singleptxt }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="gazette-post-discussion-area section_padding_100 bg-gray">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <!-- Comment Area Start -->
+                    <!-- Leave A Comment -->
+                    <div class="leave-comment-area clearfix">
+                        {% for leavecommentarea in leavecommentareas %}
+                        <div class="comment-form">
+                            <div class="gazette-heading">
+                                <h4 class="font-bold">{{leavecommentarea.heading}}</h4>
+                            </div>
+                            <!-- Comment Form -->
+                            <form action="account/comment" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="txt"  placeholder="{{leavecommentarea.formtext}}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email"  placeholder="{{leavecommentarea.formemail}}">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="mssg" cols="30" rows="10" placeholder="{{leavecommentarea.formmsg}}"></textarea>
+                                </div>
+                                <button type="submit" name="submit" class=" font-bold btn leave-comment-btn">{{leavecommentarea.formbtn}} <i class="fa fa-angle-right ml-2"></i></button>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

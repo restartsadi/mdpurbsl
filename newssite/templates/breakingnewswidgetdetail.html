@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "img" as baseUrl %}
+{% block content %}
+<!-- Main Content Area Start -->
+<br>
+<section class="main-content-wrapper section_padding_5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div class="gazette-welcome-post">
+                    <!-- Video Thumbnail -->
+                    <div class="blog-post-thumbnail my-5" >
+                        
+                        <a href=""><img src="{{postbreakingnewswidget.widgetimg.url}}" alt="#"></a>
+                         
+                    </div>
+                </div>
+                <div class="gazette-todays-post section_padding_100_50">
+
+                    <div class="gazette-heading">
+                        {% for detailPostHeading in detailPostHeadings %}
+                        <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"><h4>{{detailPostHeading.heading}}</h4></a>
+                        {% endfor %}
+                    </div>
+
+                        <!-- PostSingle Today  -->
+                        <div class="gazette-single-todays-post d-md-flex align-items-start mb-50">
+
+                            
+
+                            <div class="todays-post-content">
+                                <!-- Post Tag -->
+
+                                <div class="gazette-post-tag">
+                                    <a href="">{{postbreakingnewswidget.widget_title}}</a>
+                                </div>
+
+                                <h3><a href="" class="font-pt mb-2">{{postbreakingnewswidget.headline}}</a></h3>
+                                <a href=""><span class="gazette-post-date mb-2">{{postbreakingnewswidget.widgetbreakingnewstitle}}</span></a>
+
+                            </div>
+                        </div>
+                        <!-- Single Today Post -->                        
+                 </div> 
+            </div>
+                
+            
+
+
+
+
+
+            <div class="col-12 col-lg-3 col-md-6">
+                <div class="sidebar-area">
+                    <!-- Breaking News Widget -->
+                    {% for breakingnewswidget in breakingnewswidgets %}
+                    <div class="breaking-news-widget">
+                        <div class="widget-title">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"><h5>{{breakingnewswidget.widget_title}}</h5></a>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                        <div class="single-breaking-news-widget">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}">
+                            <img src="{{breakingnewswidget.widgetimg.url}}" alt=""></a>
+                            <div class="breakingnews-title">
+                                <p>{{breakingnewswidget.widgetbreakingnewstitle}}</p>
+                            </div>
+                            <div class="breaking-news-heading gradient-background-overlay">
+                                <h5 class="font-pt">{{breakingnewswidget.widgetheadline}}</h5>
+                            </div>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>
+{% endblock %}

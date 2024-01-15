@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% static "img" as baseUrl %}
+
+{% block content %}
+<section class="main-content-wrapper section_padding_5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-lg-9">
+                <!-- Gazette Video Welcome Post -->
+                
+                <div class="gazette-welcome-post">
+                    <!-- Video Thumbnail -->
+                    <div class="blog-post-thumbnail my-5" >
+                         {% video item.url %}
+                    </div>
+                    <!-- video's Tag -->
+                    <div class="gazette-post-tag">
+                        <a href="{% url 'newsstreamdetail' item.id %}">Tag: {{ item.tag }} </a>
+                    </div>
+                    <!--video's title-->
+                    <h2 class="font-pt">Title: {{ item.title }}</h2>
+                    <a href=""></a>
+                    <p class="gazette-post-date">Date: {{ item.added }}</p>
+                    <!-- Post Excerpt -->
+                    <p>DESCRIPTION: {{ item.description }}</p>
+                    <!-- Reading More -->
+                    <div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
+                        <div class="post-continue-btn">
+                            <a href="{% url 'newsstreamdetail' item.id %}" class="font-pt"><i class="fa fa-chevron-right" aria-hidden="true"> :{{ item.btn }}</i></a>
+                        </div>
+
+                        <div class="post-share-btn-group">
+                            {% for sociallink in sociallinks %}
+                            <a href="{{sociallink.href}}"><i class="{{sociallink.name}}" aria-hidden="true"></i></a>
+                            {% endfor %}
+                        </div>
+                       
+                    </div>
+                </div><br><br>
+            </div>
+            
+
+            <div class="col-12 col-lg-3 col-md-6">
+                <div class="sidebar-area">
+                    <!-- Breaking News Widget -->
+                    {% for breakingnewswidget in breakingnewswidgets %}
+                    <div class="breaking-news-widget">
+                        <div class="widget-title">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"><h5>{{breakingnewswidget.widget_title}}</h5></a>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                        <div class="single-breaking-news-widget">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}">
+                            <img src="{{breakingnewswidget.widgetimg.url}}" alt=""></a>
+                            <div class="breakingnews-title">
+                                <p>{{breakingnewswidget.widgetbreakingnewstitle}}</p>
+                            </div>
+                            <div class="breaking-news-heading gradient-background-overlay">
+                                <h5 class="font-pt">{{breakingnewswidget.widgetheadline}}</h5>
+                            </div>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

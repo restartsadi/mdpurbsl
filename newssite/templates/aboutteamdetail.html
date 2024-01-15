@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "img" as baseUrl %}
+{% block content %}
+
+
+
+<section class="main-content-wrapper section_padding_5">
+    <div class="container">
+        <div class="row">
+            
+                <div class="col-12">
+                    {% for teamarea in teamareas %}
+                    <a href="{% url 'aboutteamdetail' teamarea.id %}"><h3 class="font-pt mb-50">{{teamarea.heading}}</h3></a>
+                    {% endfor %}
+                </div>
+            
+            <div class="col-12 col-lg-9">
+                <!-- Gazette Video Welcome Post -->
+                
+                <div class="gazette-welcome-post">
+                    <!-- Video Thumbnail -->
+                    <div class="blog-post-thumbnail my-5" >
+
+                        <a href="{% url 'aboutteamdetail' singleteamarea.id %}"><img src="{{singleteamarea.img.url}}" alt=""></a>
+                         
+                    </div>
+                    <!-- video's Tag -->
+                    
+                    <div class="gazette-post-tag">
+                        <a href="{% url 'aboutteamdetail' singleteamarea.id %}">{{singleteamarea.name}}</a>
+                    </div>
+                    
+                    <!--video's title-->
+                    <a href=""></a>
+                    <p class="gazette-post-date">{{singleteamarea.date}}</p>
+                    <!-- Post Excerpt -->
+                    <p>{{singleteamarea.role}}</p>
+                    <!-- Reading More -->
+                    <div class="gazette-welcome-post">
+                        <div class="font-pt mb-15">
+                            <a href="{% url 'aboutteamdetail' singleteamarea.id %}" class="font-pt mb-15"><p aria-hidden="true"> {{singleteamarea.detail}} </p></a>
+                        </div>
+
+                        <div class="post-share-btn-group">
+                            {% for sociallink in sociallinks %}
+                            <a href="{{sociallink.href}}"><i class="{{sociallink.name}}" aria-hidden="true"></i></a>
+                            {% endfor %}
+                        </div>
+                       
+                    </div>
+                </div>
+                <br><br>
+            </div>
+            
+
+            <div class="col-12 col-lg-3 col-md-6">
+                <div class="sidebar-area">
+                    <!-- Breaking News Widget -->
+                    {% for breakingnewswidget in breakingnewswidgets %}
+                    <div class="breaking-news-widget">
+                        <div class="widget-title">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"><h5>{{breakingnewswidget.widget_title}}</h5></a>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                        <div class="single-breaking-news-widget">
+                            <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}">
+                            <img src="{{breakingnewswidget.widgetimg.url}}" alt=""></a>
+                            <div class="breakingnews-title">
+                                <p>{{breakingnewswidget.widgetbreakingnewstitle}}</p>
+                            </div>
+                            <div class="breaking-news-heading gradient-background-overlay">
+                                <h5 class="font-pt">{{breakingnewswidget.widgetheadline}}</h5>
+                            </div>
+                        </div>
+                        <!-- Single Breaking News Widget -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Main Content Area Start -->
+
+
+
+
+{% endblock %}

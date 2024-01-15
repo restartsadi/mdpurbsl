@@ -1,0 +1,307 @@
+{% extends 'base.html' %} {% load static %} {% load embed_video_tags %} {%
+static "img" as baseUrl %} {% block content %}
+<!-- Main Content Area Start -->
+<section class="main-content-wrapper section_padding_5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-9">
+        <!-- Gazette Video Welcome Post -->
+        {% for item in newsstream %}
+        <div class="gazette-welcome-post">
+          <!-- Video Thumbnail -->
+          <div class="blog-post-thumbnail">{% video item.url %}</div>
+          <!-- video's Tag -->
+          <div class="gazette-post-tag">
+            <a href="{% url 'newsstreamdetail' item.id %}"
+              >Tag: {{ item.tag }}
+            </a>
+          </div>
+          <!--video's title-->
+          <h2 class="font-pt">Title: {{ item.title }}</h2>
+          <a href=""></a>
+          <p class="gazette-post-date">Date: {{ item.added }}</p>
+          <!-- Post Excerpt -->
+          <p>DESCRIPTION: {{ item.description }}</p>
+          <!-- Reading More -->
+          <div
+            class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30"
+          >
+            <div class="post-continue-btn">
+              <a href="{% url 'newsstreamdetail' item.id %}" class="font-pt"
+                ><i class="fa fa-chevron-right" aria-hidden="true">
+                  :{{ item.btn }}</i
+                ></a
+              >
+            </div>
+
+            <div class="post-share-btn-group">
+              {% for sociallink in sociallinks %}
+              <a href="{{sociallink.href}}"
+                ><i class="{{sociallink.name}}" aria-hidden="true"></i
+              ></a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="gazette-todays-post section_padding_100_50">
+          <div class="gazette-heading">
+            {% for singleposttodayheading in singleposttodayheadings %}
+            <h4>{{singleposttodayheading.heading}}</h4>
+            {% endfor %}
+          </div>
+          <!-- Single Today Post -->
+          {% for post in postSingles %}
+          <div
+            class="gazette-single-todays-post d-md-flex align-items-start mb-50"
+          >
+            <div class="todays-post-thumb">
+              <img src="{{post.post_thumb_img.url}}" alt="#" />
+            </div>
+            <div class="todays-post-content">
+              <!-- Post Tag -->
+              <div class="gazette-post-tag">
+                <a href="#">{{post.tag}}</a>
+              </div>
+              <h3>
+                <a href="{% url 'detail' post.id %}" class="font-pt mb-2"
+                  >{{post.headline}}</a
+                >
+              </h3>
+              <span class="gazette-post-date mb-2"
+                >{{singleposttoday.date}}</span
+              >
+              <a href="{% url 'detail' post.id %}" class="post-total-comments"
+                >{{post.comment}}</a
+              >
+              <p>{{post.para}}</p>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- Single Today Post -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-3 col-md-6">
+        <div class="sidebar-area">
+          <!-- Breaking News Widget -->
+          {% for breakingnewswidget in breakingnewswidgets %}
+          <div class="breaking-news-widget">
+            <div class="widget-title">
+              <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"
+                ><h5>{{breakingnewswidget.widget_title}}</h5></a
+              >
+            </div>
+            <!-- Single Breaking News Widget -->
+            <div class="single-breaking-news-widget">
+              <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}">
+                <img src="{{breakingnewswidget.widgetimg.url}}" alt="" />
+              </a>
+              <div class="breakingnews-title">
+                <p>
+                  <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"
+                    >{{breakingnewswidget.widgetbreakingnewstitle}}</a
+                  >
+                </p>
+              </div>
+              <div class="breaking-news-heading gradient-background-overlay">
+                <a href="{% url 'breakingnewswidget' breakingnewswidget.id %}"
+                  ><h5 class="font-pt">
+                    {{breakingnewswidget.widgetheadline}}
+                  </h5></a
+                >
+              </div>
+            </div>
+            <!-- Single Breaking News Widget -->
+          </div>
+          {% endfor %}
+          <!-- Don't Miss Widget -->
+
+          {% for donotmiss in donotmisss %}
+          <div class="donnot-miss-widget">
+            <div class="widget-title">
+              <h5>{{donotmiss.widget_title}}</h5>
+            </div>
+            <!-- Single Don't Miss Post -->
+            <div class="single-dont-miss-post d-flex mb-30">
+              <div class="dont-miss-post-thumb">
+                <img src="{{donotmiss.post_thumbimg.url}}" alt="#" />
+              </div>
+              <div class="dont-miss-post-content">
+                <a href="{{donotmiss.url}}" class="font-pt"
+                  >{{donotmiss.post_content}}</a
+                >
+                <span>{{donotmiss.date}}</span>
+              </div>
+            </div>
+            <!-- Single Don't Miss Post -->
+          </div>
+          {% endfor %}
+
+          <!-- Advert Widget -->
+          {% for addvertisewidget in addvertisewidgets %}
+          <div class="advert-widget">
+            <div class="widget-title">
+              <h5>{{addvertisewidget.widget_title}}</h5>
+            </div>
+            <div class="advert-thumb mb-30">
+              <a href="{{addvertisewidget.url}}"
+                ><img src="{{addvertisewidget.advert_thumb.url}}" alt=""
+              /></a>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- Subscribe Widget -->
+
+          <div class="subscribe-widget">
+            {% for subscribeform in subscribeforms %}
+            <div class="widget-title">
+              <h5>{{subscribeform.heading}}</h5>
+            </div>
+            {% endfor %}
+            <div class="subscribe-form">
+              <form action="account/subscribe" method="post">
+                {% csrf_token %}
+                <input
+                  type="text"
+                  name="name"
+                  id="subs_email"
+                  placeholder="Insert Your Name"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  id="subs_email"
+                  placeholder="Inser Your Email"
+                />
+                <button type="submit" value="Subscribe">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Main Content Area End -->
+</section>
+
+<!-- Catagory Posts Area End -->
+<hr />
+<!-- Welcome Blog Slide Area Start -->
+<section class="welcome-blog-post-slide owl-carousel">
+  <!-- Single Blog Post -->
+  {% for singlebBlogPostContent in singlebBlogPostContents %}
+  <div
+    class="single-blog-post-slide bg-img background-overlay-5"
+    style="background-image: url({{singlebBlogPostContent.bgimg.url}});"
+  >
+    <!-- Single Blog Post Content -->
+
+    <div class="single-blog-post-content">
+      <div class="tags">
+        <a
+          href="{% url 'singleblogpostcontentdetailtop' singlebBlogPostContent.id %}"
+          >{{singlebBlogPostContent.tag}}</a
+        >
+      </div>
+      <h3>
+        <a
+          href="{% url 'singleblogpostcontentdetailtop' singlebBlogPostContent.id %}"
+          class="font-pt"
+          >{{singlebBlogPostContent.short_news}}</a
+        >
+      </h3>
+      <div class="date">
+        <a
+          href="{% url 'singleblogpostcontentdetailtop' singlebBlogPostContent.id %}"
+          >{{singlebBlogPostContent.date}}</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Single Blog Post -->
+  {% endfor %}
+</section>
+
+<!-- Welcome Blog Slide Area End -->
+<!-- Latest News Marquee Area Start -->
+<div class="latest-news-marquee-area">
+  <div class="simple-marquee-container">
+    <div class="marquee">
+      <ul class="marquee-content-items">
+        <li>
+          {% for marquee in marquees %}
+
+          <a href="{{marquee.url}}"
+            ><span class="latest-news-time">{{marquee.time}}</span
+            >{{marquee.text}}</a
+          >
+
+          {% endfor %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Latest News Marquee Area End -->
+
+<!-- Video Posts Area Start -->
+
+<!-- Video Posts Area End -->
+
+<!-- Editorial Area Start -->
+<section class="gazatte-editorial-area section_padding_100 bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="editorial-post-slides owl-carousel">
+          {% for editorialpostsingleslide in editorialpostsingleslides %}
+          <!-- Editorial Post Single Slide -->
+          <div class="editorial-post-single-slide">
+            <div class="row">
+              <div class="col-12 col-md-5">
+                <div class="editorial-post-thumb">
+                  <a
+                    href="{% url 'categorydetail' editorialpostsingleslide.id %}"
+                    ><img src="{{editorialpostsingleslide.img.url}}" alt=""
+                  /></a>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <div class="editorial-post-content">
+                  <!-- Post Tag -->
+                  <div class="gazette-post-tag">
+                    <a
+                      href="{% url 'categorydetail' editorialpostsingleslide.id %}"
+                      >{{editorialpostsingleslide.tag}}</a
+                    >
+                  </div>
+                  <h2>
+                    <a
+                      href="{{editorialpostsingleslide.url}}"
+                      class="font-pt mb-15"
+                      >{{editorialpostsingleslide.headline}}
+                      <br />{{editorialpostsingleslide.headlineafterbr}}</a
+                    >
+                  </h2>
+
+                  <p class="editorial-post-date mb-15">
+                    {{editorialpostsingleslide.date}}
+                  </p>
+                  <p>{{editorialpostsingleslide.para}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- Editorial Post Single Slide -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Editorial Area End -->
+{% endblock %}

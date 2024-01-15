@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "img" as baseUrl %}
+
+{% block content %}
+    <!-- Breadcumb Area Start -->
+    <div class="breadcumb-area section_padding_50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% for categorybreadcumbarea in categorybreadcumbareas %}
+                    <div class="breacumb-content d-flex align-items-center justify-content-between">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                            
+                            <a href="{{categorybreadcumbarea.url}}">{{categorybreadcumbarea.tag}}</a>
+                        </div>
+                        <p class="editorial-post-date text-dark mb-0">{{categorybreadcumbarea.date}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcumb Area End -->
+
+    <!-- Editorial Area Start -->
+    <section class="gazatte-editorial-area section_padding_100 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="editorial-post-slides owl-carousel">
+                        {% for editorialpostsingleslide in editorialpostsingleslides %}
+                        <!-- Editorial Post Single Slide -->
+                        <div class="editorial-post-single-slide">
+                            <div class="row">
+                                <div class="col-12 col-md-5">
+                                    <div class="editorial-post-thumb">
+                                        <a href="{% url 'categorydetail' editorialpostsingleslide.id %}"><img src="{{editorialpostsingleslide.img.url}}" alt=""></a>
+
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-7">
+                                    <div class="editorial-post-content">
+                                        <!-- Post Tag -->
+                                        <div class="gazette-post-tag">
+                                            <a href="{% url 'categorydetail' editorialpostsingleslide.id %}">{{editorialpostsingleslide.tag}}</a>
+                                        </div>
+                                        <h2><a href="{% url 'categorydetail' editorialpostsingleslide.id %}" class="font-pt mb-15">{{editorialpostsingleslide.headline}} <br>{{editorialpostsingleslide.headlineafterbr}}</a></h2>
+                                        
+                                        ><a href="{% url 'categorydetail' editorialpostsingleslide.id %}"><p class="editorial-post-date mb-15">{{editorialpostsingleslide.date}}</p></a>
+                                        <a href="{% url 'categorydetail' editorialpostsingleslide.id %}" class="font-pt mb-15"><p>{{editorialpostsingleslide.para}}</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- Editorial Post Single Slide -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Editorial Area End -->
+
+    <section class="catagory-welcome-post-area section_padding_100">
+        <div class="container">
+            <div class="row">
+                {% for catagorygazettewelcomepostareaa in catagorygazettewelcomepostareaas %}
+                <div class="col-12 col-md-4">
+                    <!-- Gazette Welcome Post -->
+                    
+                    <div class="gazette-welcome-post">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                            <a href="{% url 'categorywelcomepostadetail' catagorygazettewelcomepostareaa.id %}">{{catagorygazettewelcomepostareaa.gazetteposttag}}</a>
+                        </div>
+                        <h2 class="font-pt">{{catagorygazettewelcomepostareaa.gazettepostheadline}}</h2>
+                        <p class="gazette-post-date">{{catagorygazettewelcomepostareaa.gazettepostdate}}</p>
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail my-5">
+                            <a href="{% url 'categorywelcomepostadetail' catagorygazettewelcomepostareaa.id %}"><img src="{{catagorygazettewelcomepostareaa.gazettepostimg.url}}" alt=""></a>
+
+                            
+                        </div>
+                        <!-- Post Excerpt -->
+                        <p>{{catagorygazettewelcomepostareaa.gazettepostparagraph}}</p>
+                        <!-- Reading More -->
+                        <div class="post-continue-reading-share mt-30">
+                            <div class="post-continue-btn">
+                                <a href="{{catagorygazettewelcomepostareaa.url}}" class="font-pt">{{catagorygazettewelcomepostareaa.gazettepostbtn}} <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                
+                {% for catagorygazettewelcomepostareab in catagorygazettewelcomepostareabs %}
+                <div class="col-12 col-md-6">
+                    
+                    <!-- Gazette Welcome Post -->
+                    <div class="gazette-welcome-post">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                            <a href="{% url 'categorywelcomepostbdetail' catagorygazettewelcomepostareab.id %}">{{catagorygazettewelcomepostareab.gazetteposttag}}</a>
+                        </div>
+                        <h2 class="font-pt">{{catagorygazettewelcomepostareab.gazettepostheadline}}</h2>
+                        <p class="gazette-post-date">{{catagorygazettewelcomepostareab.gazettepostdate}}</p>
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail my-5">
+                            <a href="{% url 'categorywelcomepostbdetail' catagorygazettewelcomepostareab.id %}"><img src="{{catagorygazettewelcomepostareab.gazettepostimg.url}}" alt=""></a>
+                        </div>
+                        <!-- Post Excerpt -->
+                        <p>{{catagorygazettewelcomepostareab.gazettepostparagraph}}</p>
+                        <!-- Reading More -->
+                        <div class="post-continue-reading-share mt-30">
+                            <div class="post-continue-btn">
+                                <a href="{{catagorygazettewelcomepostareab.url}}" class="font-pt">{{catagorygazettewelcomepostareab.gazettepostbtn}} <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                
+               
+
+                
+                {% for catagorygazettewelcomepostareac in catagorygazettewelcomepostareacs %}
+                <div class="col-12">
+                    
+                    <!-- Gazette Welcome Post -->
+                    <div class="gazette-welcome-post d-md-flex align-items-center">
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail">
+                            <a href="{% url 'categorywelcomepostcdetail' catagorygazettewelcomepostareac.id %}"><img src="{{catagorygazettewelcomepostareac.gazettepostimg.url}}" alt=""></a>
+
+                        </div>
+                        <div class="welcome-post-contents ml-30">
+                            <!-- Post Tag -->
+                            <div class="gazette-post-tag">
+                                <a href="{% url 'categorywelcomepostcdetail' catagorygazettewelcomepostareac.id %}">{{catagorygazettewelcomepostareac.gazetteposttag}}</a>
+                            </div>
+                            <h2 class="font-pt">{{catagorygazettewelcomepostareac.gazettepostheadline}} </h2>
+                            <p class="gazette-post-date mb-15">{{catagorygazettewelcomepostareac.gazettepostdate}}</p>
+                            <!-- Post Excerpt -->
+                            <p>{{catagorygazettewelcomepostareac.gazettepostparagraph}}</p>
+                            <!-- Reading More -->
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+            
+            
+        </div>
+    </section>
+
+    {% endblock %}
